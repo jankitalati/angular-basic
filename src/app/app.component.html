@@ -1,0 +1,107 @@
+<h1 class="heading">Hello Janki {{title=="talati"}} {{data}} {{getdata()}}
+</h1>
+<h2><app-user-list></app-user-list></h2>
+<app-inline></app-inline>
+<app-template></app-template>
+<app-both></app-both>
+<app-login></app-login>
+
+<button (click)="getName('janki')">click me</button>
+<button (click)="getData('hello')">call function</button>
+<br/><br>
+
+<input type="text" #box (keyup)="getData(box.value)" placeholder="event keyup"/>
+<input type="text" #box1 (keydown)="getData(box1.value)" placeholder="event keydown"/>
+<input type="text" #box2 (blur)="getData(box2.value)" placeholder="event blur"/>
+<input type="text" #box3 (input)="getData(box3.value)" placeholder="event input"/>
+<h1 (mouseover)="getData('over')">janki</h1>
+
+<input type="text" #box4  placeholder="username" />
+<button  (click)='getVal(box4.value)'>click</button>
+<p>name is:{{displayVal}}</p>
+
+
+<button (click)="counter('add')">++</button>
+<button (click)="counter('sub')">--</button>
+
+<p>{{count}}</p>
+
+<!-- property binding start-->
+
+<input type="text" name="name" value={{name}}>
+<br><br>
+<input type="text" name="name" [value]=name>
+<br/><br/>
+<!-- property binding end-->
+
+<!-- if else start-->
+<h1 *ngIf="show; then ifBlog else elseBlog"></h1>
+<ng-template #ifBlog>this is if condition</ng-template>
+<ng-template #elseBlog>
+    <h1>else condition</h1>
+</ng-template>
+<!-- if else end-->
+
+<!-- else if start-->
+
+<ng-template [ngIf]="color=='red'">
+    <h1 style="color:Red;">color is red</h1>
+</ng-template>
+<ng-template [ngIf]="color=='green'">
+    <h1 style="color:green;">color is green</h1>
+</ng-template>
+<ng-template [ngIf]="color=='blue'">
+    <h1 style="color:blue;">color is blue</h1>
+</ng-template>
+<!-- else if end-->
+
+
+<!-- switch case start-->
+
+<div [ngSwitch]="color">
+    <h1 *ngSwitchCase="'red'" style="color:red;">red color</h1>
+    <h1 *ngSwitchCase="'blue'" style="color:blue;">blue color</h1>
+    <h1 *ngSwitchDefault>unknwn color</h1>
+</div>
+
+<!-- switch case end-->
+
+<!-- for loop start-->
+
+<h1 *ngFor="let item of user">
+    <p>{{item}}</p>
+</h1>
+
+<h1 *ngFor="let item of userDeatails">
+    <p>{{item.name}} -- {{item.id}} --  {{item.nub}}</p>
+</h1>
+
+<!-- for loop end-->
+
+<!--nested for loop start-->
+
+<ul *ngFor="let user of userDeatails">
+  <li>name:{{user.name}}</li>
+  <li>id:{{user.id}}</li>
+  <li>nub:{{user.nub}}</li>
+  <li>Social accounts</li>
+    <ul *ngFor="let social of user.social">
+        <li>{{user.social}}</li>   
+    </ul>
+    </ul>
+
+<!--nested for loop end-->
+
+<!--style binding start-->
+
+<h1 [style.color]="color" [style.background]="bgColor">style binding</h1>
+
+<button (click)="update()">update color</button>
+
+
+<h1>Routing</h1>
+<a routerLink>Home</a><br>
+<a routerLink="about">about</a><br>
+<a routerLink="user">user</a>
+
+<router-outlet></router-outlet>
